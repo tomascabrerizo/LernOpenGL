@@ -1,0 +1,10 @@
+^D:\DEV\OPENGLGAME\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\cmake-3.16.2-win64-x64\bin\cmake.exe" -SD:/Dev/OpenGLGame -BD:/Dev/OpenGLGame/build --check-stamp-file D:/Dev/OpenGLGame/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
