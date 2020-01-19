@@ -1,3 +1,0 @@
-D:/Dev/OpenGLGame/build/CMakeFiles/game.dir
-D:/Dev/OpenGLGame/build/CMakeFiles/ALL_BUILD.dir
-D:/Dev/OpenGLGame/build/CMakeFiles/ZERO_CHECK.dir

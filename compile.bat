@@ -1,7 +1,7 @@
-cd build
+if not exist ".\bin" mkdir .\bin
+if not exist ".\bin-int" mkdir .\bin-int
 
-cmake --build .
+mingw32-make
 
-copy Debug\game.exe ..\game
-
-cd ..
+move game.exe .\bin
+move *.o .\bin-int

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm/mat4x4.hpp>
 
 /*Function to resize the OpenGL Viewport*/
 void processInput(GLFWwindow* window);
@@ -14,7 +15,7 @@ int main(int argc, char** argv) {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	/*Init GLFW windows*/
-	GLFWwindow* window = glfwCreateWindow(800, 600, "Game_OPENGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(800, 600, "No Microsoft Compiler Bitch!", NULL, NULL);
 	if(NULL == window)
 	{
 		printf("failed creating windows");
@@ -38,12 +39,16 @@ int main(int argc, char** argv) {
 
 	/*Every time the windows is resize call the callback buffer resize function*/
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
+	
 	/*Init the while LOOP*/
-
 	while(!glfwWindowShouldClose(window))
 	{
 		processInput(window);
+
+		/*Rendering Commands*/
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
