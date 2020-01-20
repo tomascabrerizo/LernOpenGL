@@ -1,14 +1,25 @@
 #include <stdio.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm/vec3.hpp>
 #include <glm/glm/mat4x4.hpp>
+#include <glm/glm/gtc/matrix_transform.hpp>
+#include "HelloWorld.h"
 
 /*Function to resize the OpenGL Viewport*/
 void processInput(GLFWwindow* window);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 
-int main(int argc, char** argv) {
+int main() {
+	/*Class Test*/
+	HelloWorld hello("Hello, World!");
+	hello.Speak();
+
+	/*glm Test*/
+	glm::mat4 identity = glm::mat4(1.0f);
+	identity = glm::translate(identity, glm::vec3(-1.0f, 0.0f, 2.0f));
+
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);

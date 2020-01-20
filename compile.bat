@@ -5,3 +5,5 @@ mingw32-make
 
 move game.exe .\bin
 move *.o .\bin-int
+
+bin\game.exe
