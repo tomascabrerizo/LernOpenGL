@@ -5,7 +5,7 @@
 
 #Compiler Variables
 CC = g++
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -std=c++14
 
 #Include Directories
 INCLUDE_DIR = \
