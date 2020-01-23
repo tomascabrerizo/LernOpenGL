@@ -27,8 +27,8 @@ GLuint Shader::LoadShader()
 	const char* vertSrcChar = vertSrc.c_str();
 	const char* fragSrcChar = fragSrc.c_str();
 
-	glShaderSource(vertex, 1, & vertSrcChar, NULL);
-	glShaderSource(fragment, 1, & fragSrcChar, NULL);
+	glShaderSource(vertex, 1, &vertSrcChar, NULL);
+	glShaderSource(fragment, 1, &fragSrcChar, NULL);
 
 	glCompileShader(vertex);	
 	/*Check if shader compilation succed*/

@@ -2,10 +2,10 @@
 
 layout(location = 0) out vec4 color;
 
-uniform vec4 ml_color;
 uniform vec2 light_pos;
 
 in vec4 pos;
+in vec4 ml_color;
 
 void main()
 {
