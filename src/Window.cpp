@@ -81,8 +81,18 @@ void Window::Init()
 	
 }
 
+void Window::Clear()
+{
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+}
+
 void Window::Update()
 {
+	GLenum error = glGetError();
+	if(error != GL_NO_ERROR)
+		std::cout << "OpenGL Error: " << error << std::endl;
+
 	ProcessInput();
 	glfwSwapBuffers(m_Window);
 	glfwPollEvents();

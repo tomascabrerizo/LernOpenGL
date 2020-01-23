@@ -1,7 +1,8 @@
 #include "EngineUtils.h"
 
 namespace GameEngine {
-	
+
+	//Function to reaad text files	
 	std::string Read_File(const char* filepath)
 	{
 		std::fstream file;

@@ -2,6 +2,9 @@
 #include "EngineUtils.h"
 #include <glad/glad.h>
 #include <glm/glm/mat4x4.hpp>
+#include <glm/glm/vec2.hpp>
+#include <glm/glm/vec3.hpp>
+#include <glm/glm/vec4.hpp>
 #include <glm/glm/gtc/type_ptr.hpp>
 
 namespace GameEngine {
@@ -20,11 +23,15 @@ public:
 
 	void Enable();
 	void Disable();
+	
+	GLint GetUniformLocation(const GLchar* name);
 
-	inline void SetUniformMat4f(glm::mat4 matrix)
-	{
-		glUniformMatrix4fv(glGetUniformLocation(m_ShaderID, "pr_matrix"), 1, GL_FALSE, glm::value_ptr(matrix));
-	}
+	void SetUniformMat4f(const GLchar* name, const glm::mat4 matrix);
+	void SetUniform1f(const GLchar* name, float value);
+	void SetUniform2f(const GLchar* name, const glm::vec2 vector);
+	void SetUniform3f(const GLchar* name, const glm::vec3 vector);
+	void SetUniform4f(const GLchar* name, const glm::vec4 vector);
+	void SetUniform1i(const GLchar* name, int value);
 };
 
 }
