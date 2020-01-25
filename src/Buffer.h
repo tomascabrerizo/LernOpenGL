@@ -11,7 +11,7 @@ private:
 
 public:
 	Buffer(GLfloat* data, GLsizei cout, GLuint componentCount);
-
+	~Buffer();
 	void Bind() const;
 	void Unbind() const;
 	GLuint GetComponentCount() const;

@@ -11,6 +11,7 @@ private:
 
 public:
 	IndexBuffer(GLushort* data, GLsizei cout);
+	~IndexBuffer();
 
 	void Bind() const;
 	void Unbind() const;

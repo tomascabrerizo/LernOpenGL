@@ -4,14 +4,14 @@ namespace GameEngine {
 
 void SimpleRenderer2D::Submit(Renderable2D* renderable)
 {
-	m_RenderQueue.push_back(renderable);
+	m_RenderQueue.push_back((StaticSprite*)renderable);
 }
 
 void SimpleRenderer2D::Flush()
 {
 	while(!m_RenderQueue.empty())
 	{
-		Renderable2D* renderable = m_RenderQueue.front();
+		StaticSprite* renderable = m_RenderQueue.front();
 		renderable->GetVAO()->Bind();
 		renderable->GetIBO()->Bind();
 		

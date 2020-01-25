@@ -11,6 +11,8 @@ VertexArray::~VertexArray()
 {
 	for(int i = 0; i < m_Buffers.size(); i++)
 		delete m_Buffers[i];
+	
+	glDeleteVertexArrays(1, &m_ArrayID);
 }
 
 void VertexArray::AddBuffer(Buffer* buffer, GLuint index)

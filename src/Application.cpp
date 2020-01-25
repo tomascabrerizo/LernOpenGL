@@ -2,10 +2,12 @@
 #include "Shader.h"
 #include "Buffer.h"
 #include "IndexBuffer.h"
-#include "VertexArray.h"
+
+#include "StaticSprite.h"
+#include "Renderable2D.h"
 
 #include "SimpleRenderer2D.h"
-#include "Renderable2D.h"
+#include "BatchRenderer2D.h"
 
 int main()
 {
@@ -17,24 +19,33 @@ int main()
 	shader.Enable();
 	shader.SetUniformMat4f("pr_matrix", ortho);
 	shader.SetUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
+  
+	/*
+	GameEngine::StaticSprite sprite0(glm::vec3(0, 0, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.3, 0.7, 1), shader);
+	GameEngine::StaticSprite sprite1(glm::vec3(4, 3, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.5, 0.7, 1), shader);
+	GameEngine::StaticSprite sprite2(glm::vec3(8, 6, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.3, 0.7, 1), shader);
+	*/
+	GameEngine::Renderable2D sprite0(glm::vec3(0, 0, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.3, 0.7, 1));
+	GameEngine::Renderable2D sprite1(glm::vec3(4, 3, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.5, 0.7, 1));
+	GameEngine::Renderable2D sprite2(glm::vec3(8, 6, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.3, 0.7, 1));
 	
-	GameEngine::Renderable2D sprite0(glm::vec3(0, 0, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.3, 0.7, 1), shader);
-	GameEngine::Renderable2D sprite1(glm::vec3(4, 3, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.5, 0.7, 1), shader);
-	GameEngine::Renderable2D sprite2(glm::vec3(8, 6, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.3, 0.7, 1), shader);
 
-	GameEngine::SimpleRenderer2D renderer;
+	GameEngine::BatchRenderer2D renderer;
 
 	while(!window.ShouldClose())
 	{
 		window.Clear();
 		shader.SetUniform2f("light_pos", glm::vec2((float)(window.GetMousePosition().x * 16.0f / (float)window.GetWidth()),
 				   	(float)(9.0f - window.GetMousePosition().y * 9.0f / (float)window.GetHeight())));
-	
+		
+		renderer.Begin();	
 		renderer.Submit(&sprite0);
 		renderer.Submit(&sprite1);
 		renderer.Submit(&sprite2);
+		renderer.End();
+		
 		renderer.Flush();
-
+		
 		window.Update();
 	}
 
