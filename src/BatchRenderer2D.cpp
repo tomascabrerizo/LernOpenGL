@@ -57,37 +57,40 @@ void BatchRenderer2D::Begin()
 void BatchRenderer2D::End()
 {
 	glUnmapBuffer(GL_ARRAY_BUFFER);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void BatchRenderer2D::Submit(Renderable2D* renderable)
 {
 	const glm::vec3& position = renderable->GetPosition();
 	const glm::vec2& size = renderable->GetSize();
+	const glm::vec4 color = renderable->GetColor();
 
 	m_VertexData->Position = position;
-	m_VertexData->Color = renderable->GetColor();
+	m_VertexData->Color = color;
 	m_VertexData++;
 
 	m_VertexData->Position = glm::vec3(position.x, position.y + size.y, position.z);
-	m_VertexData->Color = renderable->GetColor();
+	m_VertexData->Color = color;
 	m_VertexData++;
 	
 	m_VertexData->Position = glm::vec3(position.x + size.x, position.y + size.y, position.z);
-	m_VertexData->Color = renderable->GetColor();
+	m_VertexData->Color = color;
 	m_VertexData++;
 
 	m_VertexData->Position = glm::vec3(position.x + size.x, position.y, position.z);
-	m_VertexData->Color = renderable->GetColor();
+	m_VertexData->Color = color;
 	m_VertexData++;
 
 	m_IndexCount += 6;
+
 }
 
 void BatchRenderer2D::Flush()
 {
 	glBindVertexArray(m_VAO);
 	m_IBO->Bind();
-	glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, 0);	
+	glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, NULL);	
 	m_IBO->Unbind();
 	glBindVertexArray(0);
 	m_IndexCount = 0;
