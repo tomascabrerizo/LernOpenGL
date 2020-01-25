@@ -17,8 +17,8 @@ struct VertexData
 class Renderable2D
 {
 protected:
-	glm::vec2 m_Size;
 	glm::vec3 m_Position;
+	glm::vec2 m_Size;
 	glm::vec4 m_Color;
 
 	

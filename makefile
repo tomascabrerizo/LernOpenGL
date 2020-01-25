@@ -15,7 +15,7 @@ INCLUDE_DIR = \
 
 #Libs Directories
 LIBS_DIR = \
-	-L vendor/glfw/lib-mingw-w64 \
+	-L vendor/glfw/lib-mingw \
 
 #External Libs
 LIBS = \

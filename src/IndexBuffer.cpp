@@ -1,5 +1,4 @@
 #include "IndexBuffer.h"
-
 namespace GameEngine {
 
 IndexBuffer::IndexBuffer(GLushort* data, GLsizei cout)
@@ -7,7 +6,7 @@ IndexBuffer::IndexBuffer(GLushort* data, GLsizei cout)
 {
 	glGenBuffers(1, &m_BufferID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, cout * sizeof(GLfloat), data, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, cout * sizeof(GLushort), data, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 

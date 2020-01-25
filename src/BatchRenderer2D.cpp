@@ -4,12 +4,15 @@ namespace GameEngine {
 
 BatchRenderer2D::BatchRenderer2D()
 {
+	m_IndexCount = 0;
 	Init();
 }
 
 BatchRenderer2D::~BatchRenderer2D()
 {
 	delete m_IBO;
+	glDeleteBuffers(1, &m_VBO);
+	glDeleteVertexArrays(1, &m_VAO);
 }
 
 void BatchRenderer2D::Init()
@@ -46,6 +49,7 @@ void BatchRenderer2D::Init()
 
 void BatchRenderer2D::Begin()
 {
+	glBindVertexArray(m_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 	m_VertexData = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 }
