@@ -20,7 +20,7 @@ private:
 	GLuint m_VAO;
 	GLuint m_VBO;
 	IndexBuffer* m_IBO;
-	GLuint m_IndexCount;
+	GLsizei m_IndexCount;
 	VertexData* m_VertexData;
 
 public:
