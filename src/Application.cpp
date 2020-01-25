@@ -10,6 +10,7 @@
 #include "BatchRenderer2D.h"
 
 #include <vector>
+#include <time.h>
 #include <iostream>
 
 int main()
@@ -22,18 +23,17 @@ int main()
 	shader.Enable();
 	shader.SetUniformMat4f("pr_matrix", ortho);
 	shader.SetUniform2f("light_pos", glm::vec2(4.0f, 1.5f));
- 
+	
+   	srand(time(NULL));
 	std::vector<GameEngine::Renderable2D*> sprites;
 
 	for(float y = 0; y < 9.0f; y++)
 	{
 		for(float x = 0; x < 16.0f; x++)
 		{
-			sprites.push_back(new GameEngine::Renderable2D(glm::vec3(x, y, 0), glm::vec2(0.9f, 0.9f), glm::vec4(1, 0, 0, 1)));
+			sprites.push_back(new GameEngine::Renderable2D(glm::vec3(x, y, 0), glm::vec2(0.9f, 0.9f), glm::vec4(rand() % 1000 /1000.f, 0, rand() % 1000 /1000.f, 1)));
 		}
 	}
-
-	GameEngine::Renderable2D* sprite2 = new GameEngine::Renderable2D(glm::vec3(8, 6, 0), glm::vec2(8, 3), glm::vec4(0.5, 0.3, 0.7, 1));	
 
 	GameEngine::BatchRenderer2D renderer;
 
@@ -45,15 +45,13 @@ int main()
 		renderer.Begin();
 		for(int i = 0; i < sprites.size(); i++)
 		{	
-			//renderer.Submit(sprites[i]);
+			renderer.Submit(sprites[i]);
 		}
-		renderer.Submit(sprite2);
 		renderer.End();
 		renderer.Flush();
 
 		window.Update();
 	}
-	delete sprite2;
 
 	return 0;
 }
