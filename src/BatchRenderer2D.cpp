@@ -16,17 +16,13 @@ void BatchRenderer2D::Init()
 {
 	glGenVertexArrays(1, &m_VAO);
 	glGenBuffers(1, &m_VBO);
-
 	glBindVertexArray(m_VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-
 	glBufferData(GL_ARRAY_BUFFER, RENDERER_BUFFER_SIZE, NULL, GL_DYNAMIC_DRAW);
-
 	glEnableVertexAttribArray(RENDERER_VERTEX_INDEX);
 	glEnableVertexAttribArray(RENDERER_COLOR_INDEX);
-		glVertexAttribPointer(RENDERER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)0);
+	glVertexAttribPointer(RENDERER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)0);
 	glVertexAttribPointer(RENDERER_COLOR_INDEX, 4, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)(3 * sizeof(GLfloat)));
-
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	GLushort indices[RENDERER_INDEX_SIZE];
