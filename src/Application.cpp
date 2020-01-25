@@ -33,7 +33,8 @@ int main()
 	{
 		for(float x = 0; x < 16.0f; x += 0.1)
 		{
-			sprites.push_back(new GameEngine::Renderable2D(glm::vec3(x, y, 0), glm::vec2(0.09f, 0.09f), glm::vec4(rand() % 1000 /1000.f, rand() % 1000 /1000.f, rand() % 1000 /1000.f, 1)));
+			sprites.push_back(new GameEngine::Renderable2D(glm::vec3(x, y, 0), glm::vec2(0.09f, 0.09f), 
+						glm::vec4(rand() % 1000 /1000.f, rand() % 1000 /1000.f, rand() % 1000 /1000.f, 1)));
 		}
 	}
 		
@@ -46,11 +47,12 @@ int main()
 #else
 	std::vector<GameEngine::StaticSprite*> sprites;
 
-	for(float y = 0; y < 9.0f; y+= 0.5)
+	for(float y = 0; y < 9.0f; y+= 0.1)
 	{
-		for(float x = 0; x < 16.0f; x += 0.5)
+		for(float x = 0; x < 16.0f; x += 0.1)
 		{
-			sprites.push_back(new GameEngine::StaticSprite(glm::vec3(x, y, 0), glm::vec2(0.4f, 0.4f), glm::vec4(rand() % 1000 /1000.f, rand() % 1000 /1000.f, rand() % 1000 /1000.f, 1), shader));
+			sprites.push_back(new GameEngine::StaticSprite(glm::vec3(x, y, 0), glm::vec2(0.09f, 0.09f),
+					   	glm::vec4(rand() % 1000 /1000.f, rand() % 1000 /1000.f, rand() % 1000 /1000.f, 1), shader));
 		}
 	}
 	

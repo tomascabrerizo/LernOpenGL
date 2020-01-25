@@ -53,6 +53,8 @@ void Window::Init()
 	//Lambda function to set the keys callback
 	glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode,int action, int mods)
 	{
+		//(void)scancode;
+		//(void)mods;
 		WinData& data = *(WinData*)glfwGetWindowUserPointer(window);
 		data.Keys[key] = action != GLFW_RELEASE;
 
@@ -61,6 +63,7 @@ void Window::Init()
 	//Lambda function to set mouse buttons callback
 	glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 	{
+		//(void)mods;
 		WinData& data = *(WinData*)glfwGetWindowUserPointer(window);
 		data.MouseButtons[button] = action != GLFW_RELEASE;	
 	});
