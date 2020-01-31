@@ -10,16 +10,18 @@ FLAGS = -Wall -Wextra -std=c++14
 #Include Directories
 INCLUDE_DIR = \
 	-I vendor/glad/include \
-	-I vendor/glfw/include \
-	-I vendor/glm-0.9	\
+	-I vendor/glfw64/include \
+	-I vendor/glm-0.9 \
+	-I vendor/FreeImageMSVC/Dist/x64 \
 
 #Libs Directories
 LIBS_DIR = \
 	-L vendor/glfw64/lib-mingw-w64 \
+	-L vendor/FreeImageMSVC/Dist/x64 \
 
 #External Libs
 LIBS = \
-	-lglfw3 -lopengl32 -lgdi32 -luser32 -lkernel32
+	-lglfw3 -lopengl32 -lgdi32 -luser32 -lkernel32 -lFreeImage
 
 #Source files
 SOURCE =  \

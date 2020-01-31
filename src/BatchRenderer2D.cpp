@@ -75,19 +75,24 @@ void BatchRenderer2D::Submit(Renderable2D* renderable)
 	unsigned int color32;
 	color32 = a << 24 | b << 16 | g << 8 | r;
 	
-	m_VertexData->Position = position;
-	m_VertexData->Color = color32;
-	m_VertexData++;
+	glm::vec4 Pos0 = *m_TransformBack * glm::vec4(position, 1);
+	glm::vec4 Pos1 = *m_TransformBack * glm::vec4(position.x, position.y + size.y, position.z, 1);
+	glm::vec4 Pos2 = *m_TransformBack * glm::vec4(position.x + size.x, position.y + size.y, position.z, 1);
+	glm::vec4 Pos3 = *m_TransformBack * glm::vec4(position.x + size.x, position.y, position.z, 1);
 
-	m_VertexData->Position = glm::vec3(position.x, position.y + size.y, position.z);
+	m_VertexData->Position = glm::vec3(Pos0.x, Pos0.y, Pos0.z);
 	m_VertexData->Color = color32;
 	m_VertexData++;
 	
-	m_VertexData->Position = glm::vec3(position.x + size.x, position.y + size.y, position.z);
+	m_VertexData->Position = glm::vec3(Pos1.x, Pos1.y, Pos1.z);
+	m_VertexData->Color = color32;
+	m_VertexData++;
+	
+	m_VertexData->Position = glm::vec3(Pos2.x, Pos2.y, Pos2.z);
 	m_VertexData->Color = color32;
 	m_VertexData++;
 
-	m_VertexData->Position = glm::vec3(position.x + size.x, position.y, position.z);
+	m_VertexData->Position = glm::vec3(Pos3.x, Pos3.y, Pos3.z);
 	m_VertexData->Color = color32;
 	m_VertexData++;
 

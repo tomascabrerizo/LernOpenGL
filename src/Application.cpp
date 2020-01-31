@@ -13,6 +13,10 @@
 #include <time.h>
 #include <iostream>
 
+#include <FreeImage.h>
+
+#if 1
+
 int main()
 {
 	GameEngine::Window window(1240, 720, "Game_Engine");
@@ -35,13 +39,15 @@ int main()
 	}
 	
 	tileLayer2.Add(new GameEngine::Renderable2D(glm::vec3(0, 0, 0), glm::vec2(4.0f, 9.0f), glm::vec4(1, 0, 0, 1)));
-
+	
+	GameEngine::Timer& timer = GameEngine::Timer::GetInstance();
+	
 	while(!window.ShouldClose())
 	{
 		window.Clear();
 		
-		GameEngine::Timer::GetInstance().Update();
-		GameEngine::Timer::GetInstance().GetFrameCount(window);
+		timer.Update();
+		timer.GetFrameCount(window);
 		
 		shader1->Enable();
 		shader1->SetUniform2f("light_pos", glm::vec2((float)(window.GetMousePosition().x * 16.0f / (float)window.GetWidth()), 
@@ -58,3 +64,29 @@ int main()
 	
 	return 0;
 }
+
+#else 
+
+int main()
+{
+	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+	//Pointer to the image
+	FIBITMAP* dib(0);
+	//Pointer to the image Data
+	BYTE* bits(0);
+	
+	fif = FreeImage_GetFileType("test.png", 0);
+	dib = FreeImage_Load(fif, "test.png");
+	
+	bits = FreeImage_GetBits(dib);
+	unsigned int width = 0;
+	unsigned int height = 0;
+
+	width = FreeImage_GetWidth(dib);
+	height = FreeImage_GetHeight(dib);
+
+	std::cout << width << " ," << height <<std::endl;
+	return 0;
+}
+
+#endif
