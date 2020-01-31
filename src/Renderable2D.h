@@ -9,9 +9,9 @@ namespace GameEngine {
 
 struct VertexData
 {
-	glm::vec3 Position; //3*4 = 12 bytes
-	glm::vec4 Color;    //4*4 = 16 bytes
-	//----------------------- = 28 bytes
+	glm::vec3 Position; //----- = 12 bytes
+	unsigned int Color;    //-- = 4  bytes
+	//------------------------- = 16 bytes
 };
 
 class Renderable2D

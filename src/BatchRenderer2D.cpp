@@ -1,4 +1,5 @@
 #include "BatchRenderer2D.h"
+#include <iostream>
 
 namespace GameEngine {
 
@@ -25,7 +26,7 @@ void BatchRenderer2D::Init()
 	glEnableVertexAttribArray(RENDERER_VERTEX_INDEX);
 	glEnableVertexAttribArray(RENDERER_COLOR_INDEX);
 	glVertexAttribPointer(RENDERER_VERTEX_INDEX, 3, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)0);
-	glVertexAttribPointer(RENDERER_COLOR_INDEX, 4, GL_FLOAT, GL_FALSE, RENDERER_VERTEX_SIZE, (const void*)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(RENDERER_COLOR_INDEX, 4, GL_UNSIGNED_BYTE, GL_TRUE, RENDERER_VERTEX_SIZE, (const void*)(3 * sizeof(GLfloat)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	GLushort indices[RENDERER_INDEX_SIZE];
@@ -64,22 +65,30 @@ void BatchRenderer2D::Submit(Renderable2D* renderable)
 {
 	const glm::vec3& position = renderable->GetPosition();
 	const glm::vec2& size = renderable->GetSize();
-	const glm::vec4 color = renderable->GetColor();
+	const glm::vec4& color = renderable->GetColor();
 
+	unsigned char r = color.x * 255.0f;
+	unsigned char g = color.y * 255.0f;
+	unsigned char b = color.z * 255.0f;
+	unsigned char a = color.w * 255.0f;
+	
+	unsigned int color32;
+	color32 = a << 24 | b << 16 | g << 8 | r;
+	
 	m_VertexData->Position = position;
-	m_VertexData->Color = color;
+	m_VertexData->Color = color32;
 	m_VertexData++;
 
 	m_VertexData->Position = glm::vec3(position.x, position.y + size.y, position.z);
-	m_VertexData->Color = color;
+	m_VertexData->Color = color32;
 	m_VertexData++;
 	
 	m_VertexData->Position = glm::vec3(position.x + size.x, position.y + size.y, position.z);
-	m_VertexData->Color = color;
+	m_VertexData->Color = color32;
 	m_VertexData++;
 
 	m_VertexData->Position = glm::vec3(position.x + size.x, position.y, position.z);
-	m_VertexData->Color = color;
+	m_VertexData->Color = color32;
 	m_VertexData++;
 
 	m_IndexCount += 6;

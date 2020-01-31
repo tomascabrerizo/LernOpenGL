@@ -6,7 +6,7 @@
 namespace GameEngine {
 
 #define RENDERER_MAX_SPRITES 20000
-#define RENDERER_VERTEX_SIZE 28
+#define RENDERER_VERTEX_SIZE sizeof(VertexData)
 #define RENDERER_SPRITE_SIZE RENDERER_VERTEX_SIZE * 4
 #define RENDERER_BUFFER_SIZE RENDERER_MAX_SPRITES * RENDERER_SPRITE_SIZE
 #define RENDERER_INDEX_SIZE RENDERER_MAX_SPRITES * 6
@@ -29,8 +29,8 @@ public:
 	void Init();
 	virtual void Submit(Renderable2D* renderable) override;
 	virtual void Flush() override;
-	void Begin();
-	void End();
+	void Begin() override;
+	void End() override;
 };
 
 }

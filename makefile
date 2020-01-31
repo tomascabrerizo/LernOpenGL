@@ -34,6 +34,6 @@ main: compile
 	$(CC) $(FLAGS) -o game $(OBJECTS) $(LIBS_DIR) $(LIBS)
 
 compile: src/*.h 
-	$(CC) $(FLAGS) -g -c $(SOURCE) $(INCLUDE_DIR) 
+	$(CC) $(FLAGS) -c -O2 $(SOURCE) $(INCLUDE_DIR) 
 
 

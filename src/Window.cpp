@@ -37,7 +37,7 @@ void Window::Init()
 
 	/*Create context for openGL*/
 	glfwMakeContextCurrent(m_Window);
-	SetVSync(true);
+	SetVSync(false);
 	
 	glfwSetWindowUserPointer(m_Window, &m_Data);
 
@@ -168,6 +168,11 @@ int Window::GetHeight() const
 int Window::ShouldClose() const
 {
 	return glfwWindowShouldClose(m_Window);
+}
+
+const char* Window::GetTitel() const
+{
+	return m_Data.Title;
 }
 
 }

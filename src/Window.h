@@ -49,6 +49,7 @@ public:
 	GLFWwindow* GetWindow() const;
 	int GetWidth() const;
 	int GetHeight() const;
+	const char* GetTitel() const;
 	int ShouldClose() const;
 };
 

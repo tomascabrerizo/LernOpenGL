@@ -12,7 +12,10 @@ namespace GameEngine {
 class Renderer2D
 {
 public:
-
+	
+	virtual ~Renderer2D(){};	
+	virtual void Begin(){};
+	virtual void End(){};
 	virtual void Submit(Renderable2D* renderable) = 0;
 	virtual void Flush() = 0;
 };
