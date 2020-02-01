@@ -1,6 +1,12 @@
 #include "Renderable2D.h"
+#include "Renderer2D.h"
 
 namespace GameEngine {
+
+Renderable2D::Renderable2D()
+{
+
+}
 
 Renderable2D::Renderable2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
 	: m_Position(position), m_Size(size), m_Color(color)
@@ -10,6 +16,11 @@ Renderable2D::Renderable2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
 
 Renderable2D::~Renderable2D()
 {
+}
+
+void Renderable2D::Submit(Renderer2D* renderer)
+{
+	renderer->Submit(this);
 }
 
 const glm::vec3 Renderable2D::GetPosition() const

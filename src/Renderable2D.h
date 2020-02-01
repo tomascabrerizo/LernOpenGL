@@ -7,6 +7,8 @@
 
 namespace GameEngine {
 
+class Renderer2D;
+
 struct VertexData
 {
 	glm::vec3 Position; //----- = 12 bytes
@@ -21,12 +23,13 @@ protected:
 	glm::vec2 m_Size;
 	glm::vec4 m_Color;
 
-	
+	Renderable2D();	
 public:
 
 	Renderable2D(glm::vec3 position, glm::vec2 size, glm::vec4 color);
-	~Renderable2D();
+	virtual ~Renderable2D();
 	
+	virtual void Submit(Renderer2D* renderer);	
 	const glm::vec3 GetPosition() const;
 	const glm::vec2 GetSize() const;
 	const glm::vec4 GetColor() const;

@@ -9,6 +9,7 @@
 #include "BatchRenderer2D.h"
 
 #include "TileLayer.h"
+#include "Group.h"
 
 #include <time.h>
 #include <iostream>
@@ -28,6 +29,15 @@ int main()
 
 	GameEngine::TileLayer tileLayer(shader1);
 	GameEngine::TileLayer tileLayer2(shader2);
+	
+	GameEngine::Group* gui = new GameEngine::Group(glm::translate(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.0f)));
+	gui->Add(new GameEngine::Renderable2D(glm::vec3(0, 0, 0), glm::vec2(6, 2), glm::vec4(0.8f, 0.8f, 0.8f, 1)));
+
+	GameEngine::Group* button = new GameEngine::Group(glm::translate(glm::mat4(1.0f), glm::vec3(0.2f, 0.2f, 0.0f)));
+	button->Add(new GameEngine::Renderable2D(glm::vec3(0.0f, 0.0f, 0), glm::vec2(5.6f, 1.6f), glm::vec4(0.2f, 0.2f, 0.2f, 1)));
+	button->Add(new GameEngine::Renderable2D(glm::vec3(0.1f, 0.1f, 0), glm::vec2(5.4f, 1.4f), glm::vec4(1.0f, 1.0f, 1.0f, 1)));
+
+	gui->Add(button);
 
 	for(float y = 0; y < 9.0f; y+=0.5f)
 	{
@@ -38,7 +48,7 @@ int main()
 		}
 	}
 	
-	tileLayer2.Add(new GameEngine::Renderable2D(glm::vec3(0, 0, 0), glm::vec2(4.0f, 9.0f), glm::vec4(1, 0, 0, 1)));
+	tileLayer2.Add(gui);
 	
 	GameEngine::Timer& timer = GameEngine::Timer::GetInstance();
 	
@@ -52,9 +62,10 @@ int main()
 		shader1->Enable();
 		shader1->SetUniform2f("light_pos", glm::vec2((float)(window.GetMousePosition().x * 16.0f / (float)window.GetWidth()), 
 					(float)(window.GetMousePosition().y * 9.0f / (float)window.GetHeight())));
-		//shader2->Enable();
-		//shader2->SetUniform2f("light_pos", glm::vec2((float)(window.GetMousePosition().x * 16.0f / (float)window.GetWidth()), 
-		//			(float)(window.GetMousePosition().y * 9.0f / (float)window.GetHeight())));
+
+		shader2->Enable();
+		shader2->SetUniform2f("light_pos", glm::vec2((float)(window.GetMousePosition().x * 16.0f / (float)window.GetWidth()), 
+					(float)(window.GetMousePosition().y * 9.0f / (float)window.GetHeight())));
 
 		tileLayer.Render();	
 		tileLayer2.Render();

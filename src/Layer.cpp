@@ -29,12 +29,10 @@ void Layer::Render()
 	m_Shader->Enable();
 	m_Renderer->Begin();
 	
-	m_Renderer->Push(glm::translate(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.0f)));
 	for(Renderable2D* renderable : m_Renderables)
 	{
-		m_Renderer->Submit(renderable);
+		renderable->Submit(m_Renderer);
 	}
-	m_Renderer->Pop();
 
 	m_Renderer->Flush();
 
